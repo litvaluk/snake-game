@@ -14,9 +14,11 @@ Game::Game(){
 	speedModifier = 30;
 	speed = 1;
 	score = 0;
-   isRunning = true;
+  isRunning = true;
  	window = NULL;
- 	
+
+	tmpTexture = NULL;
+
  	snake = NULL;
  	food = NULL;
  	
@@ -125,6 +127,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Snake";
 			TTF_SizeText(titleFont, tmpString.c_str(), &titleTextRect.w, &titleTextRect.h);
 			tmpSurface = TTF_RenderText_Blended(titleFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &titleTextRect);
@@ -132,6 +138,10 @@ void Game::render(unsigned int frame){
 			tmpString = "press space to start";
 			TTF_SizeText(underTitleFont, tmpString.c_str(), &underTitleTextRect.w, &underTitleTextRect.h);
 			tmpSurface = TTF_RenderText_Blended(underTitleFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &underTitleTextRect);
@@ -139,6 +149,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Lukáš Litvan, 2018";
 			TTF_SizeText(authorFont, "Lukas Litvan, 2018", &authorTextRect.w, &authorTextRect.h);
 			tmpSurface = TTF_RenderUTF8_Blended(authorFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &authorTextRect);
@@ -156,6 +170,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Score: " + std::to_string(score);
 			TTF_SizeText(uiFont, tmpString.c_str(), &scoreTextRect.w, &scoreTextRect.h);
 			tmpSurface = TTF_RenderText_Blended(uiFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &scoreTextRect);
@@ -163,6 +181,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Speed: " + std::to_string(speed);
 			TTF_SizeText(uiFont, tmpString.c_str(), &speedTextRect.w, &speedTextRect.h);
 			tmpSurface = TTF_RenderText_Blended(uiFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &speedTextRect);
@@ -170,6 +192,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Length: " + std::to_string(snake->len);
 			TTF_SizeText(uiFont, tmpString.c_str(), &lengthTextRect.w, &lengthTextRect.h);
 			tmpSurface = TTF_RenderText_Blended(uiFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &lengthTextRect);
@@ -186,6 +212,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Game Over!";
 			TTF_SizeText(titleFont, tmpString.c_str(), &gameOverRect.w, &gameOverRect.h);
 			tmpSurface = TTF_RenderText_Blended(titleFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &gameOverRect);
@@ -193,6 +223,10 @@ void Game::render(unsigned int frame){
 			tmpString = "press space to restart";
 			TTF_SizeText(underTitleFont, tmpString.c_str(), &underGameOverRect.w, &underGameOverRect.h);
 			tmpSurface = TTF_RenderText_Blended(underTitleFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &underGameOverRect);
@@ -200,6 +234,10 @@ void Game::render(unsigned int frame){
 			tmpString = "Score: " + std::to_string(score);
 			TTF_SizeText(underTitleFont, tmpString.c_str(), &gameOverScoreRect.w, &gameOverScoreRect.h);
 			tmpSurface = TTF_RenderText_Blended(underTitleFont, tmpString.c_str(), white);
+			if (tmpTexture != NULL) {
+				SDL_DestroyTexture(tmpTexture);
+				tmpTexture = NULL;
+			}
 			tmpTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 			SDL_FreeSurface(tmpSurface);
 			SDL_RenderCopy(renderer, tmpTexture, NULL, &gameOverScoreRect);
